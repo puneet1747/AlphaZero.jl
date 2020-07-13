@@ -8,9 +8,9 @@ using AlphaZero
 using ProgressMeter
 
 using Knet
-Knet.conv4_algo(w::KnetArray{T}, x::KnetArray{T}, y::KnetArray{T}; handle=Knet.cudnnhandle(), o...) where {T} = (0,0)
-Knet.conv4w_algo(w::KnetArray{T},x::KnetArray{T},dy::KnetArray{T},dw::KnetArray{T}; handle=Knet.cudnnhandle(), o...) where {T} = (0,0)
-Knet.conv4x_algo(w::KnetArray{T},x::KnetArray{T},dy::KnetArray{T},dx::KnetArray{T}; handle=Knet.cudnnhandle(), o...) where {T} = (0,0)
+Knet.conv4_algo(w::KnetArray{T}, x::KnetArray{T}, y::KnetArray{T}; handle=Knet.cudnnhandle(), o...) where {T} = (0, Knet.cudnnWorkSpace())
+Knet.conv4w_algo(w::KnetArray{T},x::KnetArray{T},dy::KnetArray{T},dw::KnetArray{T}; handle=Knet.cudnnhandle(), o...) where {T} = (0, Knet.cudnnWorkSpace())
+Knet.conv4x_algo(w::KnetArray{T},x::KnetArray{T},dy::KnetArray{T},dx::KnetArray{T}; handle=Knet.cudnnhandle(), o...) where {T} = (0, Knet.cudnnWorkSpace())
 
 include("../games.jl")
 GAME = get(ENV, "GAME", "connect-four")
